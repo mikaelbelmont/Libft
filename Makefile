@@ -1,24 +1,11 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mbarreto <marvin@42.fr>                    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/10/20 20:40:07 by mbarreto          #+#    #+#              #
-#    Updated: 2021/10/20 20:40:10 by mbarreto         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libft.a
 
-SRCS = ft_isalpha.c ft_isdigit.c
+SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c  ft_isprint.c ft_strlen.c ft_memset.c
+OBJS = $(SRCS.c=.o)
 
-OBJS = $(SRCS:.c=.o)
+CFLAGS = -Wall -Werror -Wextra
 
-CFLAGS = -Wall -Wextra -Werror
-
-$(NAME):
+$(NAME): $(OBJS)
 	ar rc $(NAME) $(OBJS)
 
 all: $(NAME)
@@ -29,4 +16,4 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-re: 
+re: fclean $(NAME)
