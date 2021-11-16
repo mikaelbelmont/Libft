@@ -1,6 +1,6 @@
 #include "libft.h"
 
-char *ft_substr(char const *s, unsigned int start, size_t n)
+char *ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t i = 0;
 	size_t j = 0;
@@ -11,7 +11,7 @@ char *ft_substr(char const *s, unsigned int start, size_t n)
 		return (NULL);
 	while (s[i])
 	{
-		if (i >= start && j < n)
+		if (i >= start && j < len)
 		{
 			str[j] = s[i];
 			j++;
