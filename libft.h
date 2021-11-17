@@ -2,6 +2,8 @@
 #define LIBFT_H
 
 #include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
 
 int	ft_isalpha(int c);
 int	ft_isdigit(int c);
@@ -27,5 +29,7 @@ int ft_atoi(const char *str);
 void *ft_calloc(size_t c, size_t n);
 char *ft_strdup(const char *str);
 char *ft_substr(char const *s, unsigned int start, size_t n);
+char *ft_strjoin(char const *s1, char const *s2);
+char *ft_strtrim(char const *s1, char const *set);
 
 #endif
