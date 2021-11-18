@@ -27,11 +27,10 @@ static char **create_matriz(const char *s, char **dst, char c, int l)
 {
 	int	i = 0;
 	int	j = 0;
-	int	k;
+	int	k = 0;;
 
 	while (s[i] != '\0' && j < l)
 	{
-		k = 0;
 		while (s[i] == c)
 			i++;
 		dst[j] = (char *)malloc(sizeof(char) * count_cols(s, c, i) + 1);
@@ -68,8 +67,8 @@ int ft_countwords(const char *s, char c)
 
 char **ft_split(char const *s, char c)
 {
-	int		l;
-	char	**dst;
+	int l;
+	char **dst;
 
 	if (s == NULL)
 		return (NULL);
