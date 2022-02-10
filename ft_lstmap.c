@@ -1,28 +1,41 @@
-include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbarreto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/24 18:57:58 by mbarreto          #+#    #+#             */
+/*   Updated: 2021/11/24 18:58:00 by mbarreto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-t_list *ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void *))
+#include "libft.h"
+
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*f = 0;
-	t_list	*n;
+	t_list	*l;
+	t_list	*e;
 
-	if (!f || !del)
-		return (0);
+	e = ft_lstnew(f(lst->content));
+	if (!e)
+	{
+		ft_lstclear(&lst, del);
+		return (NULL);
+	}
+	l = e;
+	lst = lst->next;
 	while (lst)
 	{
-		if (!(n = ft_lstnew((*f)(lst->content))))
+		e = ft_lstnew(f(lst->content));
+		if (!e)
 		{
-			while (f)
-			{
-				n = f->next;
-				(*del)(f->content);
-				free(f);
-				f = n;
-			}
-			lst = 0;
-			return (0);
+			ft_lstclear(&lst, del);
+			ft_lstclear(&l, del);
+			break ;
 		}
-		ft_lstadd_back(&f, n);
 		lst = lst->next;
+		ft_lstadd_back(&l, e);
 	}
-	return (f);
+	return (l);
 }

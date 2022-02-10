@@ -1,9 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mbarreto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/24 18:51:27 by mbarreto          #+#    #+#             */
+/*   Updated: 2021/11/24 18:51:30 by mbarreto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
 int	numlen(int n)
 {
-	int	l = 1;
+	int	l;
 
+	l = 1;
 	while (n > 9)
 	{
 		n = n / 10;
@@ -12,12 +25,13 @@ int	numlen(int n)
 	return (l);
 }
 
-char *ft_itoa(int n)
+char	*ft_itoa(int n)
 {
-	char *str;
-	int s = 0;
-	int n;
+	char	*str;
+	int		s;
+	int		len;
 
+	s = 0;
 	if (n == -2147483648)
 		return (ft_strdup("-2147483648"));
 	if (n < 0)
@@ -25,17 +39,17 @@ char *ft_itoa(int n)
 		n = n * -1;
 		s = 1;
 	}
-	n = numlen(n);
-	str = (char *)malloc(sizeof(char ) * (n + s + 1));
+	len = numlen(n);
+	str = (char *)malloc(sizeof(char ) * (len + s + 1));
 	if (!str)
 		return (NULL);
-	str[n + s] = '\0';
-	while (n-- > 0)
+	str[len + s] = '\0';
+	while (len-- > 0)
 	{
-		str[n + s] = 48 + n % 10;
+		str[len + s] = 48 + n % 10;
 		n = n / 10;
 	}
 	if (s == 1)
-		str[n + s] = '-';
+		str[len + s] = '-';
 	return (str);
 }
